@@ -6,6 +6,9 @@ const nextConfig = {
       "links.papareact.com",
       "platform-lookaside.fbsbx.com",
       "firebasestorage.googleapis.com",
+      "lh3.googleusercontent.com",
+      "https://create-react-app.dev/",
+      "create-react-app.dev",
     ],
   },
 };

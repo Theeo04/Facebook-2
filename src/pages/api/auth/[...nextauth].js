@@ -1,33 +1,11 @@
-// import NextAuth from "next-auth";
-// import Providers from "next-auth/providers";
+import NextAuth from "next-auth/next";
+import GoogleProvider from "next-auth/providers/google";
 
-// const options = {
-//   // Configure one or more authentication providers
-//   providers: [
-//     Providers.Facebook({
-//       clientId: process.env.FACEBOOK_CLIENT_ID,
-//       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-//     }),
-//     // ...add more providers here
-//   ],
-// };
-
-// export default NextAuth(options);
-
-import NextAuth from "next-auth";
-import FacebookProvider from "next-auth/providers/facebook";
-
-const options = {
-  // Configure one or more authentication providers
+export default NextAuth({
   providers: [
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_CLIENT_ID,
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-    // ...add more providers here
   ],
-};
-
-const authHandler = (req, res) => NextAuth(req, res, options);
-
-export default authHandler;
+});
