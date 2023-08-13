@@ -10,10 +10,11 @@ function Login() {
         height={300}
         width={300}
         objectFit="contain"
+        alt="logo"
       />
       <h1
         onClick={signIn}
-        className="p-5 bg-green-700 rounded-full text-white text-center w-50 h-50"
+        className="p-5 bg-green-700 rounded-full text-white text-center w-50 h-50 cursor-pointer"
       >
         Login with Google
       </h1>

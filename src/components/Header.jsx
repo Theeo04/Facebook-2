@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import HeaderIcon from "./Headericon";
+import HeaderIcon from "./HeaderIcon";
 import {
   BiSearch,
   BiHome,
