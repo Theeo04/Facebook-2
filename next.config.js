@@ -9,6 +9,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "https://create-react-app.dev/",
       "create-react-app.dev",
+      "i.insider.com",
     ],
   },
 };
