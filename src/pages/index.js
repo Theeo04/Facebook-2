@@ -6,6 +6,7 @@ import Login from "@/components/Login";
 import { getSession } from "next-auth/react";
 import Sidebar from "@/components/Sidebar";
 import Feed from "@/components/Feed";
+import Widgets from "@/components/Widgets";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -19,13 +20,13 @@ export default function Home() {
     return (
       <div>
         <Head>
-          <title>Facebook</title>
+          <title>SocialApp</title>
         </Head>
         <Header />
         <main className="flex">
           <Sidebar className="flex" />
           <Feed />
-          {/* {Widgets} */}
+          <Widgets />
         </main>
       </div>
     );

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "../../firebase";
 import Image from "next/image";
+import { BiLike, BiChat, BiShare } from "react-icons/bi";
 
 function Post({ id, image, postImage, message, timestamp, name }) {
   // const [downloadedPostImage, setDownloadedPostImage] = useState(null);
@@ -18,7 +19,7 @@ function Post({ id, image, postImage, message, timestamp, name }) {
   // }, [id]);
 
   return (
-    <div className="flex flex-col pb-6">
+    <div className="flex flex-col pb-6 rounded-xl shadow-md mt-5">
       <div className="p-5 bg-white mt-5 rounded-t-2xl shadow-sm">
         <div className="flex items-center space-x-2">
           <img
@@ -43,12 +44,26 @@ function Post({ id, image, postImage, message, timestamp, name }) {
             objectFit="cover"
             layout="fill"
             loading="eager"
+            alt=""
           />
         </div>
       )}
 
       {/* {Footer of the Post} */}
-      <div></div>
+      <div className="flex justify-between items-center rounded-b-xl bg-white shadow-md text-grey-400 border-t">
+        <div className="inputIcon">
+          <BiLike className="h-4" />
+          <p className="text-xs sm:text-base">Like</p>
+        </div>
+        <div className="inputIcon">
+          <BiChat className="h-4" />
+          <p className="text-xs sm:text-base">Like</p>
+        </div>
+        <div className="inputIcon">
+          <BiShare className="h-4" />
+          <p className="text-xs sm:text-base">Like</p>
+        </div>
+      </div>
     </div>
   );
 }

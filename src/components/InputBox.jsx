@@ -91,7 +91,7 @@ function InputBox() {
   };
 
   return (
-    <div className="bg-white p-2 rounded-2xl shadow-md text-grey-500 font-medium mt-6">
+    <div className="bg-white p-2 rounded-2xl shadow-md text-grey-500 font-medium mt-6 ">
       <div className="flex space-x-4 p-4 items-center">
         <Image
           className="rounded-full"
@@ -99,6 +99,7 @@ function InputBox() {
           width={40}
           height={40}
           layout="fixed"
+          alt=""
         />
         <form className="flex flex-1">
           <input

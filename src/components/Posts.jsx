@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import Post from "./Post";
-import Image from "next/image";
 
 function Posts() {
   const [posts, setPosts] = useState([]); // Initialize state for posts
@@ -31,16 +29,20 @@ function Posts() {
   console.log(posts);
 
   return (
-    <div loading="eager">
-      {posts.map((post) => (
-        <Post
-          id={post.id}
-          image={post.data.image}
-          postImage={post.data.postImage}
-          message={post.data.message}
-          name={post.data.name}
-        />
-      ))}
+    <div>
+      {posts
+        .slice()
+        .reverse()
+        .map((post) => (
+          <Post
+            key={post.id} // Don't forget to add a key prop when rendering components in a loop
+            id={post.id}
+            image={post.data.image}
+            postImage={post.data.postImage}
+            message={post.data.message}
+            name={post.data.name}
+          />
+        ))}
     </div>
   );
 }
