@@ -1,19 +1,9 @@
-{
-  /* <Post */
-}
-//           key={post.id}
-//           name={post.data().message}
-//           message={post.data().message}
-//           email={post.data().email}
-//           timestamp={post.data().timestamp}
-//           image={post.data().image}
-//           postImage={post.data().postImage}
-//         />
-
 import React, { useEffect, useState } from "react";
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import Post from "./Post";
+import Image from "next/image";
 
 function Posts() {
   const [posts, setPosts] = useState([]); // Initialize state for posts
@@ -38,11 +28,18 @@ function Posts() {
     fetchPosts();
   }, []);
 
+  console.log(posts);
+
   return (
-    <div>
-      {/* Map over the posts and render the Post component */}
+    <div loading="eager">
       {posts.map((post) => (
-        <Post key={post.id} name={post.id} />
+        <Post
+          id={post.id}
+          image={post.data.image}
+          postImage={post.data.postImage}
+          message={post.data.message}
+          name={post.data.name}
+        />
       ))}
     </div>
   );

@@ -7,6 +7,20 @@ import { addDoc, collection, doc } from "firebase/firestore";
 import { db, storage } from "../../firebase";
 import { updateDoc, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
+
+function dataURLToBlob(dataURL) {
+  const byteString = atob(dataURL.split(",")[1]);
+  const mimeString = dataURL.split(",")[0].split(":")[1].split(";")[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  return new Blob([ab], { type: mimeString });
+}
 
 function InputBox() {
   const { data: session } = useSession();
@@ -24,6 +38,7 @@ function InputBox() {
     try {
       const docRef = await addDoc(collection(db, "posts"), {
         message: inputRef.current.value,
+        image: session.user.image,
         name: session.user.name,
         email: session.user.email,
         timestamp: serverTimestamp(),
@@ -33,11 +48,17 @@ function InputBox() {
       console.log("Document written with ID: ", docRef.id);
 
       if (imageToPost) {
-        const imageRef = ref(storage, `images/${docRef.id}.jpg`);
-        await uploadBytes(imageRef, imageToPost);
+        const imageRef = ref(storage, `${v4()}`);
+        const imageBlob = dataURLToBlob(imageToPost);
+        const metadata = {
+          contentType: "image/jpeg", // Schimbați tipul de conținut în funcție de tipul imaginii
+        };
+
+        await uploadBytes(imageRef, imageBlob, metadata);
 
         const imageUrl = await getDownloadURL(imageRef);
 
+        // Utilizați updateDoc pentru a actualiza documentul creat mai devreme
         await updateDoc(doc(db, "posts", docRef.id), {
           postImage: imageUrl,
         });
